@@ -205,10 +205,10 @@ class MyOfficeController extends Controller
     public function coba(Request $request) {
 
         
-        $tes = $request->file('filename.*');
+        $tes = $request->file('layout');
         $temp = array();
 
-        if($request->hasFile('filename.*')) {
+        if($request->hasFile('room_function_name.*')) {
             $validator = Validator::make($request->all(), [
                 'filename' => 'required|image|mimes:png,jpeg,jpg'
             ]);
@@ -225,6 +225,7 @@ class MyOfficeController extends Controller
         //     array_push($temp, $key.getClientOriginalName());
         // }
 
+        
         
         return response()->json(compact('tes'));
 
