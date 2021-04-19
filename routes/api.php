@@ -22,6 +22,8 @@ Route::group(['middleware' => 'jwt.verify'], function(){
     Route::post('/editProfile', [UserController::class, 'update']);
 });
 
+Route::post('/coba', [MyOfficeController::class, 'coba']);
+
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 
@@ -117,6 +119,8 @@ Route::group(['prefix' => 'my-booking',  'middleware' =>  ['jwt.verify','user.ch
 // My Booking owner Controller
 Route::group(['prefix' => 'my-booking',  'middleware' =>  ['jwt.verify','role.check'] ], function() {
     Route::get('/owner/booked-room', [MyBookingController::class, 'bookedRoom']);
-    Route::post('/owner/change-status/{id}', [MyBookingController::class, 'changeStatus']);
+    Route::get('/owner/approved-room', [MyBookingController::class, 'approvedRoom']);
+    Route::get('/owner/declined-room', [MyBookingController::class, 'declinedRoom']);
+    Route::post('/owner/change-status', [MyBookingController::class, 'changeStatus']);
     Route::delete('/owner/delete/{id}', [MyBookingController::class, 'destroy']);
 });
